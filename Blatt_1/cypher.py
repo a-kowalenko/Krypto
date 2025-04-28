@@ -49,7 +49,6 @@ def substitution_cypher_encode(text: str, alphabet: OrderedAlphabet, permutation
     # TODO: Implementieren
     text_ids = alphabet.to_id_list(text)
     text_ids = [permutation[x] for x in text_ids]
-
     return ''.join(alphabet.id_list_to_text(text_ids))
 
 
@@ -163,6 +162,12 @@ def test_2():
     assert c == 'BCDA'
     d = substitution_cypher_decode(c, alph, perm)
     # print("Decoded: " + d)
+    p = 'PLANT'
+    alph = OrderedAlphabet('ALNPT')
+    # cypher alphabet = (A -> L, L -> A, N -> P, P -> T, T->N
+    perm = IntPermutation([1, 0, 3, 4, 2])
+    c = substitution_cypher_encode(p, alph, perm)
+    assert c == 'TALPN'
 
 
 def test_3():
@@ -181,6 +186,7 @@ def test_3():
     c = "LXFOPVEFRNHR"
     assert c == encode_vigenere(p, alph, key)
     assert p == decode_vigenere(c, alph, key)
+
 
 def test_4():
     p = 'TIMEODANAOSETDONAFERENTES'
