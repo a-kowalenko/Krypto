@@ -33,7 +33,7 @@ class PermutationCypher:
         for i in range(len(blocks)):
             temp = blocks[i].copy()
             for j in range(len(blocks[i])):
-                blocks[i][self.encrypt_key[j]] = temp[j]
+                blocks[i][j] = temp[self.encrypt_key[j]]
 
         blockToText = ""
         for x in blocks:
@@ -60,7 +60,7 @@ class PermutationCypher:
         for i in range(len(blocks)):
             temp = blocks[i].copy()
             for j in range(len(blocks[i])):
-                blocks[i][self.decrypt_key[j]] = temp[j]
+                blocks[i][j] = temp[self.decrypt_key[j]]
 
         blockToText = ""
         for x in blocks:
@@ -74,7 +74,7 @@ class PermutationCypher:
 if __name__ == '__main__':
     # Wir Verwenden die Permutation die auch im Skript verwendet wurde. Da die Zählung von Python
     # bei 0 beginnt, sind die Werte jeweils um 1 kleiner.
-    key = IntPermutation([4, 1, 3, 0, 2])
+    key = IntPermutation([3, 1, 4, 2, 0])
     krypto_system = PermutationCypher(key)
     cypher = krypto_system.encrypt("sonnesonn")
     print(cypher)
